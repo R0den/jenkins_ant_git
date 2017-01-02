@@ -1,1 +1,5 @@
-# jenkins_ant_git
+# Example of CI implementation.
+
+
+Hi,
+This is 
