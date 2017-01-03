@@ -1,5 +1,5 @@
 # Sample task answers.
-Hi! I used VirtualBox instance with Ubuntu Server 14.04. 
+I used VirtualBox instance with Ubuntu Server 14.04. 
 JSudoku game java source code used.
 
 - Install Jenkins, Ant, Git.
@@ -56,3 +56,6 @@ $ unzip checkstyle-7.4-all.jar
  - ![alt tag](https://github.com/R0den/jenkins_ant_git/blob/master/console_output2_build.PNG)
  - ![alt tag](https://github.com/R0den/jenkins_ant_git/blob/master/checkstyle_result.PNG)
  
+- External files
+ - Checkstyle - https://sourceforge.net/projects/checkstyle/files/checkstyle/7.4/checkstyle-7.4-bin.zip/download
+ - JSudoku - http://jsudokukadu.cvs.sourceforge.net/
