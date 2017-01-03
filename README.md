@@ -8,13 +8,10 @@ JSudoku game java source code used.
  - checker
  - sub.compile
  - sub.manifest
- - jar
+ - jar <br>
  
+ It includes all target related messages for more information about each step and configuration of Git and Checkstyle plugin.
  
-
-
-
-
 - Install Jenkins, Ant, Git.
 ```
 # Git and Ant
@@ -29,7 +26,15 @@ $ sudo apt-get update && sudo apt-get install jenkins
 ```
 $ sudo adduser git
 #password: git
-
-$ sudo 
+$ sudo su - git
+$ wget https://trello-attachments.s3.amazonaws.com/5865013c9e2c3bcfe9a9407e/5865017550cc1c7ead5c3cf1/52a4610fd1341e93fbe678c4eef0668d/jsudokukadu-jSudoku.tar.gz
+$ tar zxf jsudokukadu-jSudoku.tar.gz
+$ cd jSudoku
+$ git config --global user.email "git@localhost"
+$ git config --global user.name "git"
+$ git init
+$ git add .
+$ git commit -m "Initial commit"
+ 
 ```
 
