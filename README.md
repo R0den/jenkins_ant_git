@@ -38,4 +38,5 @@ $ git commit -m "Initial commit"
  - jar <br>
  
  It includes all target related messages for more information about each step and configuration of Git and Checkstyle plugin.
-<br> 
+
+
