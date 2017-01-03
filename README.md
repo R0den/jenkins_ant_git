@@ -39,7 +39,7 @@ $ git commit -m "Initial commit"
 ```
 $ sudo su - jenkins
 $ wget https://sourceforge.net/projects/checkstyle/files/checkstyle/7.4/checkstyle-7.4-bin.zip/download
-$ unzip downoad
+$ unzip download
 $ cd checkstyle-7.4
 $ cp checkstyle-7.4-all.jar docs && cd docs
 $ unzip checkstyle-7.4-all.jar
