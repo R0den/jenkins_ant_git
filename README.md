@@ -55,3 +55,11 @@ $ unzip checkstyle-7.4-all.jar
 - External files
  - Checkstyle - https://sourceforge.net/projects/checkstyle/files/checkstyle/7.4/checkstyle-7.4-bin.zip/download
  - JSudoku - http://jsudokukadu.cvs.sourceforge.net/
+
+- Sources <br>
+https://www.mkyong.com/ant/ant-how-to-create-a-java-project/ <br>
+http://www.javaworld.com/article/2076208/java-app-dev/automate-your-build-process-using-java-and-ant.html <br>
+http://leshcatlabs.net/2015/09/27/into-cicd-jenkins-ant-git-and-checkstyle/ <br>
+http://checkstyle.sourceforge.net/anttask.html <br>
+https://github.com/sevntu-checkstyle/checkstyle-samples/blob/master/ant-project/build.xml <br>
+https://ant.apache.org/manual/tutorial-HelloWorldWithAnt.html <br>
