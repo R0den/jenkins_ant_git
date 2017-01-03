@@ -1,8 +1,17 @@
 # Sample task answers.
-Hi! This is the implementation of Jenkins with Ant and Git. I used VirtualBox instance with Ubuntu Server 14.04. 
+Hi! I used VirtualBox instance with Ubuntu Server 14.04. 
 JSudoku game java source code used.
 
-- ```jsudoku_build.xml``` - Ant build.xml file
+- ```jsudoku_build.xml``` - Ant build.xml file with following targets 
+ - sub.clear
+ - git.getsource
+ - checker
+ - sub.compile
+ - sub.manifest
+ - jar
+ 
+ 
+
 
 
 
