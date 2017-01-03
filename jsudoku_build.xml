@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="jSudoku" basedir="." default="jar">
+
+        <!--App info and variables-->
+        <property name="app.name" value="jSudoku" />
+        <property name="app.shortName" value="jSudoku" />
+        <property name="app.version" value="1.0" />
+        <property name="main.class" value="org.kdu.jsudoku.control.Controller" />
+        <property name="main.path" value="org/kdu/jsudoku/control/Controller.class" />
+        <!--Git variables and basedir setup-->
+        <property name="git.repo" value="jSudoku" />
+        <property name="git.link" value="git@localhost:jSudoku" />
+        <property name="source.home" value="${git.repo}/src" />
+        <property name="classes.home" value="${git.repo}/bin" />
+        <property name="lib.home" value="${git.repo}/lib" />
+        <!--Messages-->
+        <property name="msg_info_clean" value="INFO: Performing initial cleanup." />
+        <property name="msg_okay_clean" value="OKAY: Cleaning completed." />
+        <property name="msg_okay_clone" value="OKAY: Repository cloned." />
+        <property name="msg_crit_clone" value="CRIT: Cloning Failed! The directory `${git.repo}` does not exist." />
+        <property name="msg_info_compi" value="INFO: Compiling ${app.name} - build ${app.version}..." />
+        <property name="msg_okay_compi" value="OKAY: ${app.name} - build ${app.version} compiled." />
+        <property name="msg_info_jarcp" value="INFO: Compiling jar package ${app.name} - build ${app.version}..." />
+        <property name="msg_info_check" value="INFO: Running Checkstyle on source code..." />
+        <!--Checkstyle variables-->
+        <property name="checkstyle_ver" value="7.4" />
+        <property name="checkstyle_dir" value="/var/lib/jenkins/checkstyle-${checkstyle_ver}/" />
+        <property name="checkstyle_report" value="checkstyle.xml" />
+
+        <!--Defining Macro for GIT-->
+        <macrodef name="git">
+                <attribute name="command" />
+                <attribute name="dir" default="" />
+                <element name="args" optional="true" />
+                <sequential>
+                        <echo message="git @{command}" />
+                        <exec executable="git" dir="@{dir}">
+                                <arg value="@{command}" />
+                                <args />
+                        </exec>
+                </sequential>
+        </macrodef>
+
+        <!--Adding checkstyle-->
+        <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpath="${checkstyle_dir}/checkstyle-${checkstyle_ver}-all.jar" />
+
+        <path id="project.class.path">
+                <pathelement path="${lib.home}/kduXtra.jar" />
+                <pathelement path="${lib.home}/looks-1.3.2.jar" />
+        </path>
+
+        <target name="sub.compile" depends="sub.clear,git.getsource,checker">
+                <echo message="${msg_info_compi}" />
+                <mkdir dir="${classes.home}" />
+                <javac source="1.7" srcdir="${source.home}" includeantruntime="false" destdir="${classes.home}" debug="yes">
+                        <classpath refid="project.class.path" />
+                </javac>
+                <echo message="${msg_okay_compi}" />
+        </target>
+
+        <target name="jar" depends="sub.compile,sub.manifest">
+                <echo message="Generating jar file..." />
+                <jar destfile="${app.name}.jar" basedir="${classes.home}" manifest="${classes.home}/META-INF/MANIFEST.MF">
+                        <zipfileset src="${lib.home}/kduXtra.jar" />
+                        <zipfileset src="${lib.home}/looks-1.3.2.jar" />
+                </jar>
+                <echo message="${app.name}.jar Generated!" />
+        </target>
+
+        <target xmlns:xalan="http://xml.apache.org/xslt" name="sub.manifest">
+                <echo message="Generating manifest file..." />
+                <mkdir dir="${classes.home}/META-INF" />
+                <manifest mode="update" file="${classes.home}/META-INF/MANIFEST.MF">
+                        <attribute name="Implementation-Vendor" value="Carlos Eduardo Genz" />
+                        <attribute name="Implementation-Title" value="${app.name}" />
+                        <attribute name="Implementation-Version" value="${app.version}" />
+                        <attribute name="Main-Class" value="${main.class}" />
+                </manifest>
+                <echo message="Manifest file Generated!" />
+        </target>
+
+        <target name="sub.clear">
+                <echo message="${msg_info_clean}" />
+                <delete dir="${git.repo}" />
+                <delete file="${app.name}.jar" />
+                <delete file="${checkstyle_report}" />
+                <echo message="${msg_okay_clean}" />
+        </target>
+
+        <target name="git.getsource">
+                <echo message="****** Git credentials ******" />
+                <echo message="Destination folder: ${git.repo}" />
+                <echo message="Source link: ${git.link}" />
+                <echo message="*****************************" />
+                <git command="clone">
+                        <args>
+                                <arg value="${git.link}" />
+                                <arg value="${git.repo}" />
+                        </args>
+                </git>
+                <fail message="${msg_crit_clone}">
+                        <condition>
+                                <not>
+                                        <available file="${git.repo}" />
+                                </not>
+                        </condition>
+                </fail>
+                <echo message="${msg_okay_clone}" />
+        </target>
+
+        <target name="checker">
+                <echo message="${msg_info_check}" />
+                <checkstyle config="${checkstyle_dir}/docs/sun_checks.xml" failOnViolation="false">
+                        <fileset dir="${source.home}" includes="**/*.java" />
+                        <formatter type="plain" />
+                        <formatter type="xml" toFile="${checkstyle_report}" />
+                </checkstyle>
+        </target>
+
+</project>
