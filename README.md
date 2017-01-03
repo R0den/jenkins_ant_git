@@ -12,7 +12,7 @@ $ wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key a
 $ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 $ sudo apt-get update && sudo apt-get install jenkins
 ```
-<br>
+
 - Setup local git repository with JSudoku source code.
 ```
 $ sudo adduser git
@@ -27,8 +27,8 @@ $ git init
 $ git add .
 $ git commit -m "Initial commit"
 ```
-<br>
-- Create Ant build.xml 
+
+- Create Ant build.xml <br>
 ```jsudoku_build.xml``` - Ant build.xml file with following targets 
  - sub.clear
  - git.getsource
