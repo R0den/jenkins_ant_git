@@ -2,16 +2,6 @@
 Hi! I used VirtualBox instance with Ubuntu Server 14.04. 
 JSudoku game java source code used.
 
-- ```jsudoku_build.xml``` - Ant build.xml file with following targets 
- - sub.clear
- - git.getsource
- - checker
- - sub.compile
- - sub.manifest
- - jar <br>
- 
- It includes all target related messages for more information about each step and configuration of Git and Checkstyle plugin.
- 
 - Install Jenkins, Ant, Git.
 ```
 # Git and Ant
@@ -22,6 +12,7 @@ $ wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key a
 $ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 $ sudo apt-get update && sudo apt-get install jenkins
 ```
+<br>
 - Setup local git repository with JSudoku source code.
 ```
 $ sudo adduser git
@@ -35,6 +26,16 @@ $ git config --global user.name "git"
 $ git init
 $ git add .
 $ git commit -m "Initial commit"
- 
 ```
-
+<br>
+- Create Ant build.xml 
+```jsudoku_build.xml``` - Ant build.xml file with following targets 
+ - sub.clear
+ - git.getsource
+ - checker
+ - sub.compile
+ - sub.manifest
+ - jar <br>
+ 
+ It includes all target related messages for more information about each step and configuration of Git and Checkstyle plugin.
+<br> 
